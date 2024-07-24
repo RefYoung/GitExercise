@@ -1,0 +1,23 @@
+h1 {
+    color:rgb(77,79,83)
+}
+
+#time{
+    color: rgb(150, 141, 146);
+    font-size: 12px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+p{
+    text-indent: 50px;
+}
+
+#center{
+    width: 65%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
