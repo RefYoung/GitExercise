@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="vue/vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <table id="app">
+        <tr>
+            <th>state</th>
+            <th>addr</th>
+            <th>sid</th>
+        </tr>
+
+        <tr v-for="(item,index) in emps">
+            <td >{{item}}</td>
+            <td >{{item}}</td>
+            <td >{{item}}</td>
+        </tr>
+    </table>
+
+</body>
+
+<script>
+    function get(){
+        axios({
+            headers:{
+                Authorization:"eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjM1NjZlNjMyLWIyNDgtNDkzOC1hMTRkLTllOWNmMTRmNTE4YyJ9.1WvWSC4WxGSWgfJT3YZNYOU1onGxgcZ8D24C3hHOms_ASMTbQ0aWJTU9QCyVLiaA9xf9hsYl7iX9IHVhl9uo5w"
+            },
+            method:"get",
+            url:"http://10.212.100.63:8080/mtech-ck/cbGraph/product/model/tree?productMappingId=3&schemeLibraryClass=2"
+        }).then(result=>{
+            
+        })
+    }
+
+    function post(){
+        axios.post("http://www.yunplc.com:7080/exlog","GRM=54514660114\r\nPASS=cdtu12345").then(result=>{
+            var data=result.data;
+            var obj=document.getElementsByName("f");
+            for(var i=0;i<obj.length;++i){
+                obj[i].innerHTML=data;
+            }
+        })
+    }
+
+    new Vue({
+        el:"#app",
+        data:{
+            emps:[],
+        },
+        mounted () {
+            axios.post("http://www.yunplc.com:7080/exlog","GRM=54514660114\r\nPASS=cdtu12345").then(result=>{
+            this.emps = result.data;
+            // var obj=document.getElementsByName("f");
+            // for(var i=0;i<obj.length;++i){
+            //     obj[i].innerHTML=data;
+            // }
+        })
+        },
+    })
+</script>
+
+</html>
